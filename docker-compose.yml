@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    restart: always
+    hostname: postgres
+    ports: [ '5432:5432' ]
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./scripts/create_schema.sql:/docker-entrypoint-initdb.d/create_schema.sql
+    environment:
+      POSTGRES_USERNAME: gameloft
+      POSTGRES_PASSWORD: asphalt
