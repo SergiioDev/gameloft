@@ -10,10 +10,10 @@ public record DeviceDTO(
 ) {
     public static DeviceDTO fromEntity(DeviceEntity deviceEntity) {
         return new DeviceDTO(
-                deviceEntity.getId(),
-                deviceEntity.getModel(),
-                deviceEntity.getCarrier(),
-                deviceEntity.getFirmware()
+                deviceEntity.id,
+                deviceEntity.model,
+                deviceEntity.carrier,
+                deviceEntity.firmware
         );
     }
 }

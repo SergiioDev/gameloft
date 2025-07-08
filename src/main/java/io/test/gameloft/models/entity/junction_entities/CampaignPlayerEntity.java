@@ -1,9 +1,10 @@
 package io.test.gameloft.models.entity.junction_entities;
 
 import io.test.gameloft.models.entity.CampaignEntity;
-import io.test.gameloft.models.entity.ItemEntity;
+import io.test.gameloft.models.entity.PlayerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
@@ -11,8 +12,8 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "campaign_items")
-public class CampaignItemEntity {
+@Table(name = "campaign_players")
+public class CampaignPlayerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
@@ -22,9 +23,6 @@ public class CampaignItemEntity {
     public CampaignEntity campaign;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
-    public ItemEntity item;
-
-    @Column(name = "is_available")
-    public boolean isAvailable;
+    @JoinColumn(name = "player_id")
+    public PlayerEntity player;
 }

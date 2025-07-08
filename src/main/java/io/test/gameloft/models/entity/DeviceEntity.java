@@ -1,14 +1,16 @@
 package io.test.gameloft.models.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "devices")
 public class DeviceEntity {
     @Id
-    private Long id;
+    public Long id;
 
     public String model;
     public String carrier;

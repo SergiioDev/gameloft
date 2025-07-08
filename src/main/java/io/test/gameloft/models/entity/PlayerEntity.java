@@ -1,20 +1,19 @@
 package io.test.gameloft.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.test.gameloft.models.entity.junction_entities.CampaignPlayerEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "players")
 public class PlayerEntity {
     @Id
@@ -31,12 +30,11 @@ public class PlayerEntity {
 
     public Instant lastPurchase;
 
-    @JdbcTypeCode(SqlTypes.ARRAY)
-    @Column(columnDefinition = "text[]")
-    public Set<String> campaigns = new HashSet<>();
-
-    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     public Set<DeviceEntity> devices = new HashSet<>();
+
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    public Set<CampaignPlayerEntity> campaigns = new HashSet<>();
 
     public int level;
     public int xp;
@@ -49,4 +47,8 @@ public class PlayerEntity {
 
     @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
     public InventoryEntity inventory;
+
+    @ManyToOne
+    @JoinColumn(name = "clan_id")
+    public ClanEntity clan;
 }

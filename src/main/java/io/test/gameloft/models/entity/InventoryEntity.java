@@ -19,6 +19,6 @@ public class InventoryEntity {
 
     public int coins;
 
-    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
     public Set<InventoryItemEntity> inventoryItems;
 }

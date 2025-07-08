@@ -3,11 +3,8 @@ package io.test.gameloft.models.entity.junction_entities;
 import io.test.gameloft.models.entity.InventoryEntity;
 import io.test.gameloft.models.entity.ItemEntity;
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.UUID;
 
-@Data
 @Entity
 @Table(name = "inventory_items")
 public class InventoryItemEntity {
