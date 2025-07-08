@@ -4,13 +4,12 @@ import io.test.gameloft.models.entity.junction_entities.CampaignItemEntity;
 import io.test.gameloft.models.entity.junction_entities.CampaignPlayerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
 
@@ -35,10 +34,10 @@ public class CampaignEntity {
     public Set<String> countries;
 
     @OneToMany(mappedBy = "campaign", cascade = CascadeType.ALL)
-    public Set<CampaignItemEntity> campaignItems = new HashSet<>();
+    public Set<CampaignItemEntity> campaignItems = Collections.emptySet();
 
     @OneToMany(mappedBy = "campaign", cascade = CascadeType.ALL)
-    public Set<CampaignPlayerEntity> campaignPlayers = new HashSet<>();
+    public Set<CampaignPlayerEntity> campaignPlayers = Collections.emptySet();
 
     public Instant startDate;
     public Instant endDate;

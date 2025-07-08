@@ -2,10 +2,10 @@ package io.test.gameloft.models.dto;
 
 import io.test.gameloft.models.entity.CampaignEntity;
 import io.test.gameloft.models.entity.PlayerEntity;
+
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
-
 
 public record PlayerDTO(
     UUID id,
@@ -20,7 +20,7 @@ public record PlayerDTO(
     String country,
     String language,
     String gender,
-    HashMap<String, Integer> inventory,
+    Map<String, Integer> inventory,
     Instant created,
     Instant modified,
     Instant lastSession,

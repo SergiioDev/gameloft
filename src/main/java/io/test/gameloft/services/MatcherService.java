@@ -44,9 +44,9 @@ public class MatcherService {
 
         player.campaigns = playerCampaigns.stream().map(campaignEntity ->
                 new CampaignPlayerEntity(
-                    null,
-                    campaignEntity,
-                    player
+                        null,
+                        campaignEntity,
+                        player
                 )
         ).collect(Collectors.toSet());
 

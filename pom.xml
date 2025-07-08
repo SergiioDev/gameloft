@@ -17,7 +17,6 @@
     <properties>
         <java.version>23</java.version>
         <springboot.version>${project.parent.version}</springboot.version>
-        <springmockk.version>4.0.2</springmockk.version>
     </properties>
 
     <dependencies>
@@ -32,16 +31,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-
-        <!-- Mock libraries -->
-        <dependency>
-            <groupId>com.ninja-squad</groupId>
-            <artifactId>springmockk</artifactId>
-            <version>${springmockk.version}</version>
-            <scope>test</scope>
-        </dependency>
-
 
         <!-- PostgresSQL -->
         <dependency>

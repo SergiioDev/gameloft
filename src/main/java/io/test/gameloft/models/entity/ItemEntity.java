@@ -4,8 +4,9 @@ import io.test.gameloft.models.entity.junction_entities.CampaignItemEntity;
 import io.test.gameloft.models.entity.junction_entities.InventoryItemEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,8 +22,8 @@ public class ItemEntity {
     public String name;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    public Set<InventoryItemEntity> inventoryItems;
+    public Set<InventoryItemEntity> inventoryItems = Collections.emptySet();
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    public Set<CampaignItemEntity> campaignItems;
+    public Set<CampaignItemEntity> campaignItems = Collections.emptySet();
 }

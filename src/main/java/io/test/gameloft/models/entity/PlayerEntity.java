@@ -3,11 +3,10 @@ package io.test.gameloft.models.entity;
 import io.test.gameloft.models.entity.junction_entities.CampaignPlayerEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,10 +30,10 @@ public class PlayerEntity {
     public Instant lastPurchase;
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
-    public Set<DeviceEntity> devices = new HashSet<>();
+    public Set<DeviceEntity> devices = Collections.emptySet();
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
-    public Set<CampaignPlayerEntity> campaigns = new HashSet<>();
+    public Set<CampaignPlayerEntity> campaigns = Collections.emptySet();
 
     public int level;
     public int xp;
