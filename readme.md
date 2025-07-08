@@ -21,7 +21,7 @@ This application uses:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/SergiioDev/gameloft.git
 cd gameloft
 ```
 
