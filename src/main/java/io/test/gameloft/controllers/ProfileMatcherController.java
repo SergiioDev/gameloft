@@ -1,7 +1,7 @@
 package io.test.gameloft.controllers;
 
 import io.test.gameloft.models.dto.PlayerDTO;
-import io.test.gameloft.services.MatcherService;
+import io.test.gameloft.services.ProfileMatcherService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-public class ProfileMatchController {
-    private final MatcherService matcherService;
+public class ProfileMatcherController {
+    private final ProfileMatcherService profileMatcherService;
 
-    public ProfileMatchController(MatcherService matcherService) {
-        this.matcherService = matcherService;
+    public ProfileMatcherController(ProfileMatcherService profileMatcherService) {
+        this.profileMatcherService = profileMatcherService;
     }
     @GetMapping("/get_client_config/{player_id}")
     public PlayerDTO getPlayer(@PathVariable("player_id") UUID playerId) {
-        return matcherService.matchPlayerWithCampaign(playerId);
+        return profileMatcherService.matchPlayerWithCampaign(playerId);
     }
 }
 

@@ -3,7 +3,7 @@ package io.test.gameloft.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.test.gameloft.models.dto.ClanDTO;
 import io.test.gameloft.models.dto.PlayerDTO;
-import io.test.gameloft.services.MatcherService;
+import io.test.gameloft.services.ProfileMatcherService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ProfileMatchController.class)
-class ProfileMatchControllerTest {
+@WebMvcTest(controllers = ProfileMatcherController.class)
+class ProfileMatcherControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -30,7 +30,7 @@ class ProfileMatchControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    private MatcherService matcherService;
+    private ProfileMatcherService profileMatcherService;
 
     @SneakyThrows
     @Test
@@ -60,7 +60,7 @@ class ProfileMatchControllerTest {
         );
 
         // when
-        when(matcherService.matchPlayerWithCampaign(playerId)).thenReturn(expectedResponse);
+        when(profileMatcherService.matchPlayerWithCampaign(playerId)).thenReturn(expectedResponse);
 
         // then
         mockMvc.perform(

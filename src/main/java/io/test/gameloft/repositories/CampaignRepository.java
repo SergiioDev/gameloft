@@ -23,7 +23,7 @@ public interface CampaignRepository extends JpaRepository<CampaignEntity, UUID> 
         AND it.quantity > 0
         AND c.end_date >= :playerCreatedDate
     """, nativeQuery = true)
-    List<CampaignEntity> matchCampaignWithPlayer(
+    List<CampaignEntity> getCampaignsForPlayer(
             @Param("playerId") UUID playerId,
             @Param("country") String country,
             @Param("playerLevel") int playerLevel,

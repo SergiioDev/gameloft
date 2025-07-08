@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class MatcherServiceTest {
+class ProfileMatcherServiceTest {
     @Mock
     private CampaignPlayerRepository campaignPlayerRepository;
 
@@ -33,7 +33,7 @@ class MatcherServiceTest {
     private PlayerRepository playerRepository;
 
     @InjectMocks
-    private MatcherService matcherService;
+    private ProfileMatcherService profileMatcherService;
 
     @Test
     void givenPlayerId_whenMatchPlayerWithCampaign_thenReturnPlayerDTO() {
@@ -77,7 +77,7 @@ class MatcherServiceTest {
 
         // When
         when(playerRepository.findById(playerId)).thenReturn(Optional.of(playerEntity));
-        when(campaignRepository.matchCampaignWithPlayer(
+        when(campaignRepository.getCampaignsForPlayer(
                 playerId,
                 playerEntity.country,
                 playerEntity.level,
@@ -87,7 +87,7 @@ class MatcherServiceTest {
         doNothing().when(campaignPlayerRepository).deleteByUserId(playerId);
         when(playerRepository.save(playerEntity)).thenReturn(playerEntity);
 
-        PlayerDTO result = matcherService.matchPlayerWithCampaign(playerId);
+        PlayerDTO result = profileMatcherService.matchPlayerWithCampaign(playerId);
 
         // Then
         PlayerDTO expectedResult = new PlayerDTO(
@@ -119,7 +119,7 @@ class MatcherServiceTest {
         assertEquals(expectedResult, result);
 
         verify(playerRepository).findById(playerId);
-        verify(campaignRepository).matchCampaignWithPlayer(
+        verify(campaignRepository).getCampaignsForPlayer(
                 playerId,
                 playerEntity.country,
                 playerEntity.level,
@@ -135,7 +135,7 @@ class MatcherServiceTest {
         when(playerRepository.findById(playerId)).thenReturn(Optional.empty());
 
 
-        assertThrows(PlayerNotFoundException.class, () -> matcherService.matchPlayerWithCampaign(playerId));
+        assertThrows(PlayerNotFoundException.class, () -> profileMatcherService.matchPlayerWithCampaign(playerId));
 
         verify(playerRepository).findById(playerId);
     }

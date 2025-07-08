@@ -12,7 +12,7 @@ public record PlayerDTO(
     int totalSpent,
     int totalRefund,
     int totalTransactions,
-    Set<String> campaigns,
+    Set<String> activeCampaigns,
     Set<DeviceDTO> devices,
     int level,
     int xp,

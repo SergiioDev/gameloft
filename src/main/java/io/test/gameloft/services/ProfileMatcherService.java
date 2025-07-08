@@ -16,12 +16,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class MatcherService {
+public class ProfileMatcherService {
     final PlayerRepository playerRepository;
     final CampaignRepository campaignRepository;
     final CampaignPlayerRepository campaignPlayerRepository;
 
-    public MatcherService(PlayerRepository playerRepository, CampaignRepository campaignRepository, CampaignPlayerRepository campaignPlayerRepository) {
+    public ProfileMatcherService(PlayerRepository playerRepository, CampaignRepository campaignRepository, CampaignPlayerRepository campaignPlayerRepository) {
         this.playerRepository = playerRepository;
         this.campaignRepository = campaignRepository;
         this.campaignPlayerRepository = campaignPlayerRepository;
@@ -32,13 +32,12 @@ public class MatcherService {
         PlayerEntity player = playerRepository.findById(playerId)
                 .orElseThrow(() -> new PlayerNotFoundException("Player with id " + playerId + " not found"));
 
-        List<CampaignEntity> playerCampaigns = campaignRepository.matchCampaignWithPlayer(
+        List<CampaignEntity> playerCampaigns = campaignRepository.getCampaignsForPlayer(
                 player.id,
                 player.country,
                 player.level,
                 player.created
         );
-
 
         campaignPlayerRepository.deleteByUserId(playerId);
 
